@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  n0:
+    build:
+      context: ./manager
+    image: arm64v8/alpine:3.14
+    deploy:
+      replicas: 1
+      placement:
+        constraints: 
+          - node.hostname == n0
+          - node.role == manager
+
+  n1:
+    build:
+      context: ./worker
+    image: arm64v8/alpine:3.14
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == n1]
+    # command: ["sh", "-c", "docker swarm join --token ${SWARM_JOIN_TOKEN} ${MANAGER_IP}:2377"]
+
+  n2:
+    build:
+      context: ./worker
+    image: arm64v8/alpine:3.14
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == n2]
+    # command: ["sh", "-c", "docker swarm join --token ${SWARM_JOIN_TOKEN} ${MANAGER_IP}:2377"]
