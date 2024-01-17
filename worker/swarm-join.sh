@@ -14,18 +14,15 @@ until docker info &> /dev/null; do
     sleep 1
 done
 
+# Join swarm
 cat vol/swarm/worker_join_script.txt || true
 bash vol/swarm/worker_join_script.sh || true
 
 # Setup ipfs
-# bash ../common/ipfs-setup.sh || true
-# chmod +x ../common/ipfs-setup.sh
-# bash ../common/ipfs-setup.sh
-# chmod +x ./ipfs-setup.sh
-# bash ./ipfs-setup.sh
 bash ./ipfs-setup.sh
 
 # Redirect output and errors to a log file
 exec > /vol/swarm/swarm-join.log 2>&1
 
+# Keep the script running
 tail -f /dev/null

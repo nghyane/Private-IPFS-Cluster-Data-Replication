@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+# default to ~/.ipfs
+#export IPFS_PATH=${IPFS_PATH:-/var/lib/ipfs/.ipfs}
+
+pidfile="/run/ipfs.pid"
+command="ipfs"
+command_args="daemon --enable-gc --migrate"
+# default use root
+#command_user="ipfs:ipfs"
+start_stop_daemon_args="--wait 1000 -b \
+                 -1 /var/log/ipfs/ipfs.log \
+                 -2 /var/log/ipfs/ipfs.log"
+
+depend() {
+    need net
+}

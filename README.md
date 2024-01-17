@@ -18,8 +18,64 @@ This repository provides a comprehensive guide and setup for building a private 
 
 ## Usage:
 
-1. **Docker Swarm Initialization**:
+1.  **Prepare common files**:
 
-   - Follow the instructions in [run-guide](./RUN-GUIDE.md) for initializing the Docker Swarm network.
+    ```bash
+    chmod +x ./prepare.sh
+    ./prepare.sh
+    ```
 
-The Usage section is not complete yet.
+    This will create the necessary directories and files for the manager/worker docker image.
+
+2.  **Docker Swarm Initialization**:
+
+    - Follow the instructions in [run-guide](./RUN-GUIDE.md) for initializing the Docker Swarm network.
+
+3.  **Check**:
+
+    We can go open docker container terminal with `docker exec -it <container> /bin/sh` command, then we can test the IPFS cluster with the following commands:
+
+    Make sure all necessary files are in place:
+
+    ```bash
+      ls -a
+      ls /vol/swarm -a
+    ```
+
+    Check the IPFS configuration:
+
+    ```bash
+    cat ~/.ipfs/swarm.key
+    cat ~/.ipfs/config
+    ```
+
+    Check the IPFS Daemon service status:
+
+    ```bash
+    cat etc/init.d/ipfs
+    rc-status -a
+    rc-service ipfs status
+    ```
+
+    Check swarm network:
+
+    ```bash
+    ipfs bootstrap
+    docker node ls
+    ipfs swarm peers
+    ```
+
+    > Make sure if the IPFS Daemon is running. If not, we can start it manually for each node with `rc-service ipfs start` command.
+
+4.  **Testing**:
+
+    You can test the IPFS cluster with the following commands:
+
+    ```bash
+    ipfs add -r /vol/swarm
+    ipfs pin ls -t recursive
+    ipfs pin rm -r <cid>
+    ipfs repo gc
+    ```
+
+This docs is not complete yet.

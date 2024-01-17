@@ -35,11 +35,6 @@ ETH0_IP=$(ip -4 addr show eth0 | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | he
 echo $ETH0_IP > /vol/swarm/manager/ip_address
 
 # Setup ipfs
-# bash ../common/ipfs-setup.sh || true
-# chmod +x ../common/ipfs-setup.sh
-# bash ../common/ipfs-setup.sh
-# chmod +x ./ipfs-setup.sh
-# bash ./ipfs-setup.sh
 bash ./ipfs-setup.sh
 
 # Redirect output and errors to a log file

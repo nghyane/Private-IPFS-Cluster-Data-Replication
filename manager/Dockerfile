@@ -6,18 +6,22 @@ RUN echo "Dockerfile for Swarm Manager"
 RUN echo "Install Packages"
 RUN apk --no-cache add openrc git bash nano jq go go-ipfs
 
-# Copy the swarm-setup.sh script from the current directory to the root directory of the image
-# RUN mkdir -p /vol/swarm/manager
+# Copy scripts from the current directory to the root directory of the image
+COPY keygen /vol/swarm/keygen
+COPY services/ipfs /etc/init.d/ipfs
 COPY swarm-setup.sh /swarm-setup.sh
-COPY ./ipfs-setup.sh /ipfs-setup.sh
-COPY ./ipfs-update-config.sh /ipfs-update-config.sh
-COPY ./ipfs-update-bootstrap.sh /ipfs-update-bootstrap.sh
+COPY ipfs-setup.sh /ipfs-setup.sh
+COPY ipfs-update-config.sh /ipfs-update-config.sh
+COPY ipfs-update-bootstrap.sh /ipfs-update-bootstrap.sh
+COPY ipfs-daemon.sh /ipfs-daemon.sh
 
 # Set execute permissions for the script
+RUN chmod +x /etc/init.d/ipfs
 RUN chmod +x /swarm-setup.sh
 RUN chmod +x /ipfs-setup.sh
 RUN chmod +x /ipfs-update-config.sh
 RUN chmod +x /ipfs-update-bootstrap.sh
+RUN chmod +x /ipfs-daemon.sh
 
 # Define the entry point to be the swarm-setup.sh script
 ENTRYPOINT ["/swarm-setup.sh"]
