@@ -1,16 +1,16 @@
-# Dockerfile for Swarm Worker
+FROM docker:dind
 
-FROM alpine:3.14
+RUN echo "Dockerfile for Swarm Worker"
 
-RUN apk --no-cache add go go-ipfs git nano docker
+# Install packages
+RUN echo "Install Packages"
+RUN apk --no-cache add openrc git bash nano go go-ipfs
 
-# Environment variables for worker nodes
-ENV SWARM_JOIN_TOKEN=${SWARM_JOIN_TOKEN}
-ENV MANAGER_IP=${MANAGER_IP}
+# Copy the swarm-join.sh script from the current directory to the root directory of the image
+COPY swarm-join.sh /swarm-join.sh
 
-# Log SWARM_JOIN_TOKEN and MANAGER_IP
-RUN echo "SWARM_JOIN_TOKEN: $SWARM_JOIN_TOKEN" >> /var/log/swarm.log
-RUN echo "MANAGER_IP: $MANAGER_IP" >> /var/log/swarm.log
+# Set execute permissions for the script
+RUN chmod +x /swarm-join.sh
 
-# CMD to join the swarm
-CMD ["sh", "-c", "docker swarm join --token ${SWARM_JOIN_TOKEN} ${MANAGER_IP}:2377"]
+# Define the entry point to be the swarm-join.sh script
+ENTRYPOINT ["/swarm-join.sh"]
