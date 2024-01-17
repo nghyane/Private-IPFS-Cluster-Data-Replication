@@ -14,15 +14,26 @@
    cd Private-IPFS-Cluster-Data-Replication
    ```
 
-2. **Build and deploy the Docker Swarm stack:**
+2. **Cleanup (optional)**
 
    ```bash
+   docker container prune
+   docker volume prune
+   docker image prune
+   ```
+
+   This command will remove all stopped containers, unused volumes, and unused images.
+
+3. **Build and deploy the Docker Swarm stack:**
+
+   ```bash
+   docker compose build
    docker-compose up -d
    ```
 
    This command will create and deploy the Docker Swarm stack with a manager node (`n0`) and two worker nodes (`n1`, `n2`).
 
-3. **Monitor the deployment:**
+4. **Monitor the deployment:**
 
    - Check the status of the deployed services:
 
