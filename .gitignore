@@ -1,0 +1,5 @@
+# 
+/manager/services/*
+/manager/ipfs-*.sh
+/worker/services/*
+/worker/ipfs-*.sh
