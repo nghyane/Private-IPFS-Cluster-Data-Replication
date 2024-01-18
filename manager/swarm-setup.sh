@@ -34,6 +34,13 @@ fi
 ETH0_IP=$(ip -4 addr show eth0 | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | head -n 1)
 echo $ETH0_IP > /vol/swarm/manager/ip_address
 
+# Wait for manager ip address to be ready
+while [ ! -f /vol/swarm/manager/ip_address ]; do
+    echo "[swarm-setup] Waiting for manager ip address to be ready..."
+    sleep 1
+done
+echo "[swarm-setup] Manager ip address is ready"
+
 # Setup ipfs
 bash ./ipfs-setup.sh
 

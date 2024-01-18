@@ -1,6 +1,9 @@
 # 
 /manager/keygen/*
 /manager/services/*
+/manager/dicom-files/*
+/manager/pdf-files/*
 /manager/ipfs-*.sh
+/worker/pdf-files/*
 /worker/services/*
 /worker/ipfs-*.sh

@@ -32,6 +32,11 @@ bash ./ipfs-update-config.sh $CURRENT_NODE_IP_ADDRESS
 echo "[ipfs-setup] IPFS config updated"
 
 # IPFS bootstrap
+while [ ! -f /vol/swarm/manager/ip_address ] || [ ! -f /vol/swarm/manager/ipfs-id.json ]; do
+    echo "[ipfs-setup] Waiting for manager resources to be ready..."
+    sleep 1
+done
+echo "[ipfs-setup] Manager resources are ready"
 echo "[ipfs-setup] Setup IPFS bootstrap"
 bash ./ipfs-update-bootstrap.sh
 echo "[ipfs-setup] IPFS bootstrap updated"
@@ -53,13 +58,17 @@ else
 fi
 
 # IPFS Daemon
-while [ ! -f /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key ]; do
+while [ ! -s /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key ]; do
     echo "[ipfs-setup] Waiting for swarm key to be ready..."
     sleep 1
 done
 
 echo "[ipfs-setup] Swarm key is ready"
-cat ./swarm.key > ~/.ipfs/swarm.key
+# cd /vol/swarm/keygen/ipfs-swarm-key-gen || true
+SWARM_KEY_CONTENT=$(cat /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key)
+echo "[ipfs-setup] Copy swarm key: $SWARM_KEY_CONTENT" 
+cat /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key > ~/.ipfs/swarm.key
+# cp /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key ~/.ipfs/swarm.key
 cd /
 echo "[ipfs-setup] Start IPFS Daemon"
 bash ./ipfs-daemon.sh

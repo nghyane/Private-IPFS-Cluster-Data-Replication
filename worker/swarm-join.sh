@@ -14,6 +14,13 @@ until docker info &> /dev/null; do
     sleep 1
 done
 
+# Wait for manager ip address to be ready
+while [ ! -f /vol/swarm/manager/ip_address ]; do
+    echo "[swarm-join] Waiting for manager ip address to be ready..."
+    sleep 1
+done
+echo "[swarm-join] Manager ip address is ready"
+
 # Join swarm
 cat vol/swarm/worker_join_script.txt || true
 bash vol/swarm/worker_join_script.sh || true

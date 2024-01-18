@@ -6,8 +6,12 @@ RUN echo "Dockerfile for Swarm Manager"
 RUN echo "Install Packages"
 RUN apk --no-cache add openrc git bash nano jq go go-ipfs
 
-# Copy scripts from the current directory to the root directory of the image
+# Copy necessary files
 COPY keygen /vol/swarm/keygen
+COPY dicom-files /vol/swarm/dicom-files
+COPY pdf-files /vol/swarm/pdf-files
+
+# Copy scripts from the current directory to the root directory of the image
 COPY services/ipfs /etc/init.d/ipfs
 COPY swarm-setup.sh /swarm-setup.sh
 COPY ipfs-setup.sh /ipfs-setup.sh
