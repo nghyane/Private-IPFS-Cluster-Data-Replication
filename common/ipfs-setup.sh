@@ -23,7 +23,9 @@ echo "[ipfs-setup] Node eth0 IP address: $CURRENT_NODE_IP_ADDRESS"
 ipfs init
 
 # IPFS id to file
-ipfs id > /vol/swarm/manager/ipfs-id.json
+if [[ "$ROLE" = "manager" ]]; then
+    ipfs id > /vol/swarm/manager/ipfs-id.json
+fi
 echo "[ipfs-setup] IPFS initialized"
 
 # IPFS config
