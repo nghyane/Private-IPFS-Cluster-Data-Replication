@@ -83,6 +83,11 @@ This repository provides a comprehensive guide and setup for building a private 
     curl http://<node_ip_address>:8080/ipfs/<cid>
     ```
 
+    <!-- image preview-1.1.png -->
+
+    ![image1.1](preview-1.1.png)
+    ![image1.2](preview-1.2.png)
+
     Also we can test upload/add file via api server with the following:
 
     ```bash
