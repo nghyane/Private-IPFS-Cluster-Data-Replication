@@ -1,10 +1,10 @@
 # Private IPFS Cluster for Data Replication
 
-This repository provides a comprehensive guide and setup for building a private IPFS (InterPlanetary File System) cluster designed for secure and efficient data replication. Inspired by the insightful work at [Eleks Research](https://eleks.com/research/ipfs-network-data-replication/), this repository covers the creation of a Docker Swarm network, joining nodes to the swarm, configuring IPFS, and establishing a robust private network for enhanced data replication and distribution.
+This repository provides a comprehensive guide and setup for building a private IPFS (InterPlanetary File System) cluster designed for secure and efficient data replication. Inspired by the insightful work at [Eleks Research](https://eleks.com/research/ipfs-network-data-replication/), this repository covers the creation of a IPFS Swarm network, joining nodes to the swarm, configuring IPFS, and establishing a robust private network for enhanced data replication and distribution.
 
 ## Key Features:
 
-- **Docker Swarm Integration**: Initiate and manage a Docker Swarm network to orchestrate IPFS nodes for improved collaboration and resource utilization.
+- **IPFS Swarm Integration**: Initiate and manage a IPFS Swarm network to orchestrate IPFS nodes for improved collaboration and resource utilization.
 
 - **Cross-Platform Compatibility**: Utilize Alpine Linux and ARM64 architecture for a lightweight and efficient containerized environment.
 
@@ -27,9 +27,9 @@ This repository provides a comprehensive guide and setup for building a private 
 
     This will create the necessary directories and files for the manager/worker docker image.
 
-2.  **Docker Swarm Initialization**:
+2.  **Setup Swarm IPFS**:
 
-    - Follow the instructions in [run-guide](./RUN-GUIDE.md) for initializing the Docker Swarm network.
+    - Follow the instructions in [run-guide](./RUN-GUIDE.md) for initializing the IPFS Swarm network.
 
 3.  **Check**:
 
@@ -61,7 +61,6 @@ This repository provides a comprehensive guide and setup for building a private 
 
     ```bash
     ipfs bootstrap
-    docker node ls
     ipfs swarm peers
     ```
 

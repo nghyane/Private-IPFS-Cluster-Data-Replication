@@ -4,10 +4,7 @@
 set -x
 
 # Get the hostname of the current node
-# HOSTNAME=$(hostname)
-
-# Get the role of the current node
-ROLE=$(docker node inspect --format '{{.Spec.Role}}' $(hostname))
+HOSTNAME=$(hostname)
 
 # IP address of the current node
 CURRENT_NODE_IP_ADDRESS=$(ip -4 addr show eth0 | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | head -n 1)
@@ -18,14 +15,10 @@ mkdir -p /vol/swarm/$CURRENT_NODE_IP_ADDRESS/ipfs
 # IPFS init
 echo "[ipfs-setup] Setup IPFS"
 echo "[ipfs-setup] Node hostname: $HOSTNAME"
-echo "[ipfs-setup] Node role: $ROLE"
 echo "[ipfs-setup] Node eth0 IP address: $CURRENT_NODE_IP_ADDRESS"
 ipfs init
 
 # IPFS id to file
-if [[ "$ROLE" = "manager" ]]; then
-    ipfs id > /vol/swarm/manager/ipfs-id.json
-fi
 echo "[ipfs-setup] IPFS initialized"
 
 # IPFS config
@@ -43,34 +36,17 @@ echo "[ipfs-setup] Setup IPFS bootstrap"
 bash ./ipfs-update-bootstrap.sh
 echo "[ipfs-setup] IPFS bootstrap updated"
 
-# Prepare swarm key
-echo "[ipfs-setup] Setup swarm key"
-if [[ "$ROLE" = "manager" ]]; then
-    echo "[ipfs-setup] Generate swarm key"
-    # rm -rf /vol/swarm/keygen || true
-    # mkdir -p /vol/swarm/keygen
-    cd /vol/swarm/keygen
-    # git clone https://github.com/Kubuxu/go-ipfs-swarm-key-gen.git .
-    cd ipfs-swarm-key-gen
-    go run main.go > ./swarm.key
-    # cat ./swarm.key > ~/.ipfs/swarm.key
-    echo "[ipfs-setup] Swarm key updated"
-else
-    echo "[ipfs-setup] Not generate the swarm key setup block on this node."
-fi
-
 # IPFS Daemon
-while [ ! -s /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key ]; do
+while [ ! -s ./swarm.key ]; do
     echo "[ipfs-setup] Waiting for swarm key to be ready..."
     sleep 1
 done
 
 echo "[ipfs-setup] Swarm key is ready"
-# cd /vol/swarm/keygen/ipfs-swarm-key-gen || true
-SWARM_KEY_CONTENT=$(cat /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key)
+SWARM_KEY_CONTENT=$(cat ./swarm.key)
 echo "[ipfs-setup] Copy swarm key: $SWARM_KEY_CONTENT" 
-cat /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key > ~/.ipfs/swarm.key
-# cp /vol/swarm/keygen/ipfs-swarm-key-gen/swarm.key ~/.ipfs/swarm.key
+cat ./swarm.key > ~/.ipfs/swarm.key
+# cp ./swarm.key ~/.ipfs/swarm.key
 cd /
 echo "[ipfs-setup] Start IPFS Daemon"
 bash ./ipfs-daemon.sh

@@ -24,14 +24,14 @@
 
    This command will remove all stopped containers, unused volumes, and unused images.
 
-3. **Build and deploy the Docker Swarm stack:**
+3. **Build and deploy the Docker stack:**
 
    ```bash
-   docker compose build
+   docker compose build --no-cache
    docker-compose up -d
    ```
 
-   This command will create and deploy the Docker Swarm stack with a manager node (`n0`) and two worker nodes (`n1`, `n2`).
+   This command will create and deploy the Docker stack with a manager node (`n0`) and two worker nodes (`n1`, `n2`).
 
 4. **Monitor the deployment:**
 
@@ -46,10 +46,6 @@
      ```bash
      docker-compose logs <service-name>
      ```
-
-<!-- ## Accessing Docker Swarm
-
-- You can access the Docker Swarm manager's dashboard by navigating to `http://<manager-ip>:2375` in your web browser. -->
 
 ## Cleanup
 
