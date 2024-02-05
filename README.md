@@ -33,7 +33,7 @@ This repository provides a comprehensive guide and setup for building a private 
 
 3.  **Check**:
 
-    We can go open docker container terminal with `docker exec -it <container> /bin/sh` command, then we can test the IPFS cluster with the following commands:
+    We can go open docker container terminal with `docker exec -it <container> /bin/sh` command, then we can test the IPFS with the following commands:
 
     Make sure all necessary files are in place:
 
@@ -68,7 +68,7 @@ This repository provides a comprehensive guide and setup for building a private 
 
 4.  **Testing**:
 
-    You can test the IPFS cluster with the following commands:
+    You can test the IPFS with the following commands:
 
     ```bash
     ipfs add -r /vol/swarm
