@@ -77,4 +77,16 @@ This repository provides a comprehensive guide and setup for building a private 
     ipfs repo gc
     ```
 
+    Test the IPFS Gateway with the following command:
+
+    ```bash
+    curl http://<node_ip_address>:8080/ipfs/<cid>
+    ```
+
+    Also we can test upload/add file via api server with the following:
+
+    ```bash
+    curl -X POST -F file=@/path/to/your/file http://<node_ip_address>:5001/api/v0/add
+    ```
+
 This docs is not complete yet.
