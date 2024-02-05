@@ -24,14 +24,14 @@
 
    This command will remove all stopped containers, unused volumes, and unused images.
 
-3. **Build and deploy the Docker stack:**
+3. **Build and deploy the Docker compose stack:**
 
    ```bash
    docker compose build --no-cache
    docker-compose up -d
    ```
 
-   This command will create and deploy the Docker stack with a manager node (`n0`) and two worker nodes (`n1`, `n2`).
+   This command will create and deploy the Docker compose stack with a manager node (`n0`) and two worker nodes (`n1`, `n2`).
 
 4. **Monitor the deployment:**
 
