@@ -7,13 +7,12 @@ RUN echo "Install Packages"
 RUN apk --no-cache add openrc git bash nano jq go go-ipfs
 
 # Copy necessary files
-COPY keygen /vol/swarm/keygen
+COPY swarm.key /swarm.key
 COPY dicom-files /vol/swarm/dicom-files
 COPY pdf-files /vol/swarm/pdf-files
 
 # Copy scripts from the current directory to the root directory of the image
 COPY services/ipfs /etc/init.d/ipfs
-COPY swarm.key /swarm.key
 COPY manager-setup.sh /manager-setup.sh
 COPY ipfs-setup-manager.sh /ipfs-setup-manager.sh
 COPY ipfs-update-config.sh /ipfs-update-config.sh

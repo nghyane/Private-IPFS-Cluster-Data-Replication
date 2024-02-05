@@ -6,9 +6,11 @@ RUN echo "Dockerfile for Swarm Worker"
 RUN echo "Install Packages"
 RUN apk --no-cache add openrc git bash nano jq go go-ipfs
 
+# Copy necessary files
+COPY swarm.key /swarm.key
+
 # Copy scripts from the current directory to the root directory of the image
 COPY services/ipfs /etc/init.d/ipfs
-COPY swarm.key /swarm.key
 COPY worker-setup.sh /worker-setup.sh
 COPY ipfs-setup-worker.sh /ipfs-setup-worker.sh
 COPY ipfs-update-config.sh /ipfs-update-config.sh
