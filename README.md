@@ -1,10 +1,10 @@
 # Private IPFS Cluster for Data Replication
 
-This repository provides a comprehensive guide and setup for building a private IPFS (InterPlanetary File System) cluster designed for secure and efficient data replication. Inspired by the insightful work at [Eleks Research](https://eleks.com/research/ipfs-network-data-replication/), this repository covers the creation of a Docker Swarm network, joining nodes to the swarm, configuring IPFS, and establishing a robust private network for enhanced data replication and distribution.
+This repository provides a comprehensive guide and setup for building a private IPFS (InterPlanetary File System) cluster designed for secure and efficient data replication. Inspired by the insightful work at [Eleks Research](https://eleks.com/research/ipfs-network-data-replication/), this repository covers the creation of a IPFS Swarm network, joining nodes to the swarm, configuring IPFS, and establishing a robust private network for enhanced data replication and distribution.
 
 ## Key Features:
 
-- **Docker Swarm Integration**: Initiate and manage a Docker Swarm network to orchestrate IPFS nodes for improved collaboration and resource utilization.
+- **IPFS Swarm Integration**: Initiate and manage a IPFS Swarm network to orchestrate IPFS nodes for improved collaboration and resource utilization.
 
 - **Cross-Platform Compatibility**: Utilize Alpine Linux and ARM64 architecture for a lightweight and efficient containerized environment.
 
@@ -27,13 +27,13 @@ This repository provides a comprehensive guide and setup for building a private 
 
     This will create the necessary directories and files for the manager/worker docker image.
 
-2.  **Docker Swarm Initialization**:
+2.  **Setup Swarm IPFS**:
 
-    - Follow the instructions in [run-guide](./RUN-GUIDE.md) for initializing the Docker Swarm network.
+    - Follow the instructions in [run-guide](./RUN-GUIDE.md) for initializing the IPFS Swarm network.
 
 3.  **Check**:
 
-    We can go open docker container terminal with `docker exec -it <container> /bin/sh` command, then we can test the IPFS cluster with the following commands:
+    We can go open docker container terminal with `docker exec -it <container> /bin/sh` command, then we can test the IPFS with the following commands:
 
     Make sure all necessary files are in place:
 
@@ -61,7 +61,6 @@ This repository provides a comprehensive guide and setup for building a private 
 
     ```bash
     ipfs bootstrap
-    docker node ls
     ipfs swarm peers
     ```
 
@@ -69,7 +68,7 @@ This repository provides a comprehensive guide and setup for building a private 
 
 4.  **Testing**:
 
-    You can test the IPFS cluster with the following commands:
+    You can test the IPFS with the following commands:
 
     ```bash
     ipfs add -r /vol/swarm
@@ -83,6 +82,11 @@ This repository provides a comprehensive guide and setup for building a private 
     ```bash
     curl http://<node_ip_address>:8080/ipfs/<cid>
     ```
+
+    <!-- image preview-1.1.png -->
+
+    ![image1.1](preview-1.1.png)
+    ![image1.2](preview-1.2.png)
 
     Also we can test upload/add file via api server with the following:
 
