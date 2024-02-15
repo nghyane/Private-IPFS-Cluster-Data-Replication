@@ -94,4 +94,6 @@ This repository provides a comprehensive guide and setup for building a private 
     curl -X POST -F file=@/path/to/your/file http://<node_ip_address>:5001/api/v0/add
     ```
 
-This docs is not complete yet.
+## Without Docker Compose
+
+You can see [Private-IPFS-Manager](https://github.com/adamcanray/Private-IPFS-Manager) and [Private-IPFS-Worker](https://github.com/adamcanray/Private-IPFS-Worker) repository to run the manager and worker node without docker compose.
