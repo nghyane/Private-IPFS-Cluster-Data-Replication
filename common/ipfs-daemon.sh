@@ -2,11 +2,11 @@
 
 echo "[ipfs-daemon] IPFS Daemon"
 
-mkdir -p /run/openrc || true
+rc-status -a
+rc-service ipfs start
 touch /run/openrc/softlevel
+rc-service ipfs restart
 rc-update add ipfs default
-rc-service ipfs start --dry-run
-# rc-service ipfs start
 sleep 1
 rc-status -a
 
