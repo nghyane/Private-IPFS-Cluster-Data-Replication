@@ -31,7 +31,7 @@
    docker-compose up -d
    ```
 
-   This command will create and deploy the Docker compose stack with a manager node (`n0`) and two worker nodes (`n1`, `n2`).
+   This command will create and deploy the Docker compose stack with a manager node (`n0`) and two worker nodes (`n1`, `n2`). If you want to only run the manager node, you can just do `docker-compose up -d n0`.
 
 4. **Monitor the deployment:**
 

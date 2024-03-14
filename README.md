@@ -16,7 +16,7 @@ This repository provides a comprehensive guide and setup for building a private 
 
 - **Testing and Usage**: Verify the functionality of your private IPFS network by testing access to Content Identifiers (CIDs) and ensuring smooth data replication.
 
-## Usage:
+## Run:
 
 1.  **Prepare common files**:
 
@@ -31,7 +31,9 @@ This repository provides a comprehensive guide and setup for building a private 
 
     - Follow the instructions in [run-guide](./RUN-GUIDE.md) for initializing the IPFS Swarm network.
 
-3.  **Check**:
+## Usage
+
+1.  **Check**:
 
     We can go open docker container terminal with `docker exec -it <container> /bin/sh` command, then we can test the IPFS with the following commands:
 
@@ -66,7 +68,7 @@ This repository provides a comprehensive guide and setup for building a private 
 
     > Make sure if the IPFS Daemon is running. If not, we can start it manually for each node with `rc-service ipfs start` command.
 
-4.  **Testing**:
+2.  **Testing**:
 
     You can test the IPFS with the following commands:
 
@@ -93,6 +95,8 @@ This repository provides a comprehensive guide and setup for building a private 
     ```bash
     curl -X POST -F file=@/path/to/your/file http://<node_ip_address>:5001/api/v0/add
     ```
+
+    > Since we [doesn't expose the API server to the public](https://github.com/adamcanray/Private-IPFS-Cluster-Data-Replication/blob/d547b12eafdca7d72583f1123436ffde9a354b90/common/ipfs-update-config.sh#L15), we can use other alternative to upload file to the IPFS network, more on [rpc docs](https://docs.ipfs.tech/reference/kubo/rpc/)
 
 ## Without Docker Compose
 
