@@ -1,4 +1,4 @@
-FROM docker:dind
+FROM alpine:latest
 
 RUN echo "Dockerfile for Swarm Manager"
 
