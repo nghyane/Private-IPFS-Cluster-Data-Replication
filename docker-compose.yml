@@ -1,5 +1,3 @@
-version: "2"
-
 services:
   n0:
     build: "./manager"
