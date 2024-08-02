@@ -11,6 +11,10 @@ services:
           - "node.role==manager"
     volumes:
       - nvol:/vol/swarm
+    ports:
+      - "8080:8080"   
+    ports:
+      - "5001:5001"   
   n1:
     build: "./worker"
     depends_on:
